@@ -1,0 +1,39 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS annodata;
+DROP TABLE IF EXISTS task;
+DROP TABLE IF EXISTS distrube;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  actor TEXT NOT NULL
+);
+
+CREATE TABLE annodata (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  taskname INTEGER NOT NULL,
+  taskid INTEGER NOT NULL,
+  letters TEXT NOT NULL,
+  annos TEXT NOT NULL,
+  overmark INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (taskname) REFERENCES task (taskname)
+);
+
+CREATE TABLE task (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  taskname TEXT UNIQUE NOT NULL,
+  type TEXT NOT NULL,
+  needtag INTEGER NOT NULL,
+  status TEXT NOT NULL,
+  tags TEXT NOT NULL
+);
+
+CREATE TABLE distrube (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  taskname TEXT NOT NULL,
+  username TEXT NOT NULL,
+  dist TEXT NOT NULL,
+  FOREIGN KEY (taskname) REFERENCES task (taskname),
+  FOREIGN KEY (username) REFERENCES task (username)
+);
