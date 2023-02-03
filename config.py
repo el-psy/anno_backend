@@ -6,7 +6,8 @@ config = {
 
 		},
 		'origins':[
-			'http://localhost:5173' # 前端的位置
+			'http://localhost:5173', # 前端的位置
+			'http://127.0.0.1:5173'
 		],
 		'methods':[
 			"GET", "HEAD", "POST", "OPTIONS", "PUT", "PATCH", "DELETE" # 允许访问的方式
